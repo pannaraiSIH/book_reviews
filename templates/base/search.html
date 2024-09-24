@@ -1,32 +1,36 @@
 <div class="search-container">
-  <form>
-    <label for="search" class="">Search</label>
-    <input
-      type="text"
-      id="search"
-      class="input-global"
-      placeholder="Search..."
-    />
-    <button type="submit">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
-        width="20"
-        height="20"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-        />
-      </svg>
-    </button>
+  <div>
+    <form method="POST" action="/">
+      {% csrf_token %}
+      <label for="search" class="">Search</label>
+      <input
+        type="text"
+        id="search"
+        name="search"
+        class="input-global"
+        placeholder="Search..."
+      />
+      <button type="submit" class="circle-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+          width="20"
+          height="20"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          />
+        </svg>
+      </button>
+    </form>
 
-    <div>
+    <button class="circle-btn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -43,12 +47,12 @@
           d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
         />
       </svg>
-    </div>
-  </form>
+    </button>
+  </div>
 
   <div class="create-container">
     <p>Add</p>
-    <a href="{% url 'create-book' %}">
+    <a href="{% url 'create-book' %}" class="circle-btn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

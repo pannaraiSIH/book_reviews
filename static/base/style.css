@@ -2,12 +2,14 @@
   --light-yellow: #fef9d9;
   --light-green: #dee5d4;
   --blue: #8eaccd;
+  --red: #c96868;
   --rounded: 0.5rem;
   --rounded-md: 1rem;
   --rounded-full: 100%;
   --fs-header: 1.5rem;
   --fs-sub-header: 1.2rem;
   --fs-content: 1rem;
+  --fs-small: 0.8rem;
 }
 
 *,
@@ -30,6 +32,11 @@ body {
   font-family: "Roboto Mono", monospace;
   min-height: 100vh;
   line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 body,
@@ -74,6 +81,7 @@ textarea,
 select {
   font-family: inherit;
   font-size: inherit;
+  resize: none;
 }
 
 button {
@@ -121,12 +129,25 @@ main {
   padding-block: 2.5rem;
 }
 
-.input-global {
-  width: 20%;
-  height: 2.5rem;
+.input-global,
+.select-global,
+.book-form-container input,
+.book-form-container > div > input,
+.book-form-container > div > select,
+.book-form-container > div > textarea {
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--blue);
   border-radius: var(--rounded);
+}
+
+.input-height-global,
+.book-form-container > div > input {
+  height: 2.5rem;
+}
+
+.require-field,
+.warning {
+  color: var(--red);
 }
 
 /* -------------nav, sidebar------------- */
@@ -178,8 +199,13 @@ main {
   align-items: center;
 }
 
-.search-container form {
-  width: 100%;
+.search-container > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-container > div > form {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -195,8 +221,7 @@ main {
   gap: 1rem;
 }
 
-.search-container form button,
-.create-container a {
+.circle-btn {
   width: 40px;
   height: auto;
   aspect-ratio: 1/1;
@@ -205,8 +230,7 @@ main {
   border-radius: var(--rounded-full);
 }
 
-.search-container form div,
-.create-container a {
+.circle-btn {
   display: grid;
   place-items: center;
   aspect-ratio: 1/1;
@@ -248,6 +272,10 @@ main {
   margin-top: 2rem;
 }
 
+.book-list-container .no-items {
+  text-align: center;
+}
+
 .book-list-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -270,6 +298,12 @@ main {
   transition: transform 0.3s ease;
 }
 
+.book-list-row .book-list-item a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .book-list-row .book-list-item:hover {
   scale: 1.08;
   box-shadow: 2px 1px var(--blue);
@@ -288,7 +322,7 @@ main {
   font-size: var(--fs-sub-header);
 }
 
-.book-list-row .book-list-item > div {
+.book-list-row .book-list-item > a > div {
   display: flex;
   justify-content: center;
 }
@@ -304,6 +338,7 @@ main {
 .book-list-rating {
   display: flex !important;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .book-list-pagination {
@@ -324,4 +359,82 @@ main {
   display: grid;
   place-items: center;
 }
+/* --------------------------------- */
+
+/* ------------------------------------- */
+/* -------------create book------------- */
+.book-form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 2.5rem;
+  margin-top: 2rem;
+}
+
+.book-form-container div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-form-container .details {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.book-form-container .cover-image input {
+  cursor: pointer;
+}
+
+.book-form-container .cover-image input::-webkit-file-upload-button {
+  display: none;
+}
+
+.book-form-container .cover-image p {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: var(--fs-small);
+}
+
+.book-form-container .button-group {
+  grid-column-start: 2;
+  grid-template-columns: 1fr 1fr;
+}
+
+.book-form-container .button-group a {
+  text-align: center;
+  background-color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: var(--rounded);
+  padding: 0.5rem 0.8rem;
+  color: white;
+}
+
+.book-form-container .button-group input {
+  cursor: pointer;
+}
+
+/* --------------------------------- */
+
+/* -------------modal------------- */
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 4px solid var(--light-green);
+  background-color: white;
+  width: 25rem;
+  height: 15rem;
+  border-radius: var(--rounded);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-container div {
+}
+
 /* --------------------------------- */

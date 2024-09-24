@@ -1,0 +1,19 @@
+{% extends 'base/index.html' %}
+
+<!-- content -->
+{% block content %}
+
+<h2>Create book</h2>
+<form
+  method="post"
+  id="search-form"
+  class="book-form-container"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {{form}}
+  <div class="button-group">
+    <input type="submit" value="Submit" id="submit-button" />
+    <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}
