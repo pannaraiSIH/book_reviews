@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Book
+from .models import Book, Review
 
 
 class BookForm(ModelForm):
@@ -7,3 +7,9 @@ class BookForm(ModelForm):
         model = Book
         fields = ['title', 'author', 'publication_date',
                   'genre', 'description', 'cover_image']
+
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['message', 'rating']

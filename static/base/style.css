@@ -3,6 +3,7 @@
   --light-green: #dee5d4;
   --blue: #8eaccd;
   --red: #c96868;
+  --yellow: #fccd2a;
   --rounded: 0.5rem;
   --rounded-md: 1rem;
   --rounded-full: 100%;
@@ -105,25 +106,6 @@ li {
   scroll-margin-block: 5ex;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  background-color: var(--light-yellow);
-  padding-inline: 2rem;
-  color: var(--blue);
-}
-
-nav p {
-  font-size: var(--fs-header);
-}
-
-nav button {
-  color: var(--blue);
-  padding: 1.5rem;
-}
-
 main {
   margin-inline: 4rem;
   padding-block: 2.5rem;
@@ -150,7 +132,59 @@ main {
   color: var(--red);
 }
 
+.date {
+  font-size: var(--fs-small);
+  font-style: italic;
+}
+
+.button-group a {
+  text-align: center;
+  background-color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: var(--rounded);
+  padding: 0.5rem 0.8rem;
+  color: white;
+}
+
+.button-group input,
+.rating-item {
+  cursor: pointer;
+}
+
+.rating-fill {
+  fill: var(--yellow);
+  /* border-color: var(--light-yellow); */
+}
+
+.rating-none {
+  fill: none;
+}
+
+.hidden {
+  display: none;
+}
+
 /* -------------nav, sidebar------------- */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--light-yellow);
+  padding-inline: 2rem;
+  color: var(--blue);
+}
+
+nav > a {
+  font-size: var(--fs-header);
+}
+
+nav button {
+  color: var(--blue);
+  padding: 1.5rem;
+}
+
 .sidebar-container {
   position: fixed;
   top: 0;
@@ -341,15 +375,22 @@ main {
   margin-top: auto;
 }
 
-.book-list-pagination {
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.pagination .navigation {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: end;
-  margin-top: 2rem;
 }
 
-.book-list-pagination button {
+.pagination .navigation button {
   aspect-ratio: 1/1;
   width: 40px;
   height: auto;
@@ -401,19 +442,6 @@ main {
   grid-template-columns: 1fr 1fr;
 }
 
-.book-form-container .button-group a {
-  text-align: center;
-  background-color: var(--red);
-  border: 1px solid var(--red);
-  border-radius: var(--rounded);
-  padding: 0.5rem 0.8rem;
-  color: white;
-}
-
-.book-form-container .button-group input {
-  cursor: pointer;
-}
-
 /* --------------------------------- */
 
 /* -------------modal------------- */
@@ -434,7 +462,139 @@ main {
   text-align: center;
 }
 
-.modal-container div {
+/* --------------------------------- */
+
+/* --------------------------------- */
+/* -------------book detail and review------------- */
+.book-detail-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.book-detail-container > div {
+  max-width: 18rem;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: fill;
+}
+
+.book-detail-container ul {
+  width: 100%;
+}
+
+.book-detail-container ul li {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+}
+
+.review-container {
+  margin-top: 2rem;
+}
+
+.review-container > ul {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-container .no-items {
+  text-align: center;
+}
+
+.review-container > ul > .review-item {
+  border: 1px solid var(--blue);
+  border-radius: var(--rounded);
+  padding: 1rem;
+}
+
+.review-container .user-detail {
+  margin-bottom: 1rem;
+}
+
+.review-container .user-detail > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.review-container .user-detail .img-container {
+  width: 4rem;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: var(--rounded-full);
+  border: 1px solid var(--blue);
+  background-color: var(--light-yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-header);
+}
+
+.review-container .user-detail .img-container > p {
+  height: fit-content;
+  margin: 0;
+}
+
+.review-container .user-detail .rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-container .form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container .review-form {
+  max-width: 50rem;
+  width: 100%;
+}
+
+.form-container .review-form .rating {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.form-container .review-form .rating > p {
+  margin-right: auto;
+}
+
+.form-container .review-form .rating-item {
+  cursor: pointer;
+}
+
+.form-container .review-form .rating-item label svg {
+  fill: white;
+}
+
+.form-container
+  .review-form
+  .rating-item
+  input[type="radio"]:checked
+  + label
+  svg {
+  fill: var(--yellow);
+}
+
+.form-container .review-form .rating-item .selected {
+  fill: var(--yellow);
+}
+
+.form-container .review-form .message {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-container .review-form .button-group {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 /* --------------------------------- */

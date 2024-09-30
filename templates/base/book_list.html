@@ -4,10 +4,87 @@
 {% block content %}
 
 <!-- search -->
-{% include 'base/search.html' %}
+<div class="search-container">
+  <div>
+    <form method="GET" action="{% url 'home' %}">
+      <label for="search" class="">Search</label>
+      <input
+        type="text"
+        id="search"
+        name="search"
+        class="input-global"
+        placeholder="Search..."
+      />
+      <button type="submit" class="circle-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+          width="20"
+          height="20"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          />
+        </svg>
+      </button>
+    </form>
+
+    <button class="circle-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="{1.5}"
+        stroke="currentColor"
+        className="size-6"
+        width="20"
+        height="20"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div class="create-container">
+    <p>Add</p>
+    <a href="{% url 'create-book' %}" class="circle-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+        width="20"
+        height="20"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4.5v15m7.5-7.5h-15"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
 
 <!-- tags -->
-{% include 'base/tags.html' %}
+<ul class="tags-container">
+  <li><a href="{% url 'home' %}">All</a></li>
+  {% for value, label in genres %}
+  <li><a href="{% url 'home' %}?search={{value}}">#{{label}}</a></li>
+  {% endfor %}
+</ul>
 
 <!--  -->
 <ul class="book-list-container">
@@ -23,11 +100,11 @@
     {% endif %}
 
     <li class="book-list-item">
-      <a href="{% url 'update-book' book.id %}">
+      <a href="{% url 'review-book' book.id %}">
         <div>
           <img
-            src="data:image/png;base64, {{image}}"
-            alt="book cover"
+            src="{% if book.cover_image %}{{book.cover_image.url}}{% endif %}"
+            alt="{{book.title}} cover image"
             srcset=""
           />
         </div>
@@ -40,11 +117,11 @@
           <li>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
+              fill=""
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              class="size-6 {% if book.average_rating > i %} rating-fill {% else %} rating-none {% endif %}"
               width="20"
               height="20"
             >
@@ -71,45 +148,48 @@
   {% endif %}
 </ul>
 
-<div class="book-list-pagination">
-  <button type="button">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="size-6"
-      width="20"
-      height="20"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M15.75 19.5 8.25 12l7.5-7.5"
-      />
-    </svg>
-  </button>
-  <p>1</p>
-  <p>2</p>
-  <p>3</p>
-  <button type="button">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="size-6"
-      width="20"
-      height="20"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="m8.25 4.5 7.5 7.5-7.5 7.5"
-      />
-    </svg>
-  </button>
+<div class="pagination">
+  <div>1 - {{book_count}} of {{book_count}} items</div>
+  <div class="navigation">
+    <button type="button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+        width="20"
+        height="20"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5 8.25 12l7.5-7.5"
+        />
+      </svg>
+    </button>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <button type="button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+        width="20"
+        height="20"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+        />
+      </svg>
+    </button>
+  </div>
 </div>
 {% endblock content %}
