@@ -14,7 +14,7 @@
     <title>Book Store</title>
   </head>
   <body>
-    {% include 'base/nav.html' %}
+    {% if request.path != '/login' %} {% include 'base/nav.html' %} {% endif %}
 
     <main>
       <!-- content -->

@@ -15,24 +15,16 @@
 <header>
   <nav>
     <a href="{% url 'home' %}">Book Reviews</a>
-    <button type="button" id="menu-button" onclick="handleToggleMenu()">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        className="size-6"
-        width="30"
-        height="30"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-        />
-      </svg>
-    </button>
+
+    {% if request.user.is_authenticated %}
+    <p>Welcome back, {{user.username}}!</p>
+    {% endif %}
+    <!--  -->
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="auth-button">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="auth-button">Login</a>
+    {% endif %}
   </nav>
 
   <aside role="menubar" class="sidebar-container" id="sidebar">

@@ -5,14 +5,6 @@ from static.base.constants import GENRE_CHOICES
 # Create your models here.
 
 
-# class User(models.Model):
-#     name = models.CharField(max_length=100)
-#     email = models.EmailField(unique=True)
-#     password = models.CharField()
-#     created = models.DateTimeField(auto_now=True)
-#     updated = models.DateTimeField(auto_now_add=True)
-
-
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100, blank=True, null=True)
@@ -39,7 +31,10 @@ class Review(models.Model):
     message = models.TextField(blank=True, null=True)
     rating = models.IntegerField(default=0)
     book = models.ForeignKey(
-        Book, related_name='book_reviewed', on_delete=models.DO_NOTHING, null=True)
+        Book, related_name='book_reviewed', on_delete=models.CASCADE, null=True)
     create_user = models.ForeignKey(
         User, related_name='review_created', on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.message

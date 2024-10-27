@@ -1,0 +1,75 @@
+{% extends 'base/index.html' %}
+
+<!--  -->
+{% block content %}
+<!--  -->
+{% if page == 'login' %}
+<div class="login-container">
+  <div>
+    <h1>Login</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div>
+        <label for="">Username:</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter username"
+          class="input-global"
+        />
+      </div>
+      <div>
+        <label for="">Password:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          class="input-global"
+        />
+      </div>
+
+      <input
+        type="submit"
+        name=""
+        id=""
+        value="Login"
+        class="input-global input-height-global submit-button"
+      />
+    </form>
+
+    {% if messages %}
+    <ul class="warning">
+      {% for message in messages %}
+      <li>{{message}} {% endfor %}</li>
+    </ul>
+    {% endif %}
+
+    <div class="helper-text">
+      <p>Haven't signup yet?</p>
+      <a href="{% url 'register' %}" class="">Register</a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="register-container">
+  <div>
+    <h1>Register</h1>
+    <form action="" method="POST">
+      {% csrf_token %} {{form}}
+      <input
+        type="submit"
+        value="Register"
+        class="submit-button input-global input-height-global"
+      />
+    </form>
+
+    <div class="helper-text">
+      <p>Already signed up?</p>
+      <a href="{% url 'login' %}">Login</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!--  -->
+{% endblock content %}

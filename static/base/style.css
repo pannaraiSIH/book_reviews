@@ -147,7 +147,7 @@ main {
 }
 
 .button-group input,
-.rating-item {
+.rating-item label {
   cursor: pointer;
 }
 
@@ -164,6 +164,20 @@ main {
   display: none;
 }
 
+.truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 4.5rem;
+}
+
+.errorlist {
+  color: var(--red);
+  font-size: var(--fs-small);
+}
+
 /* -------------nav, sidebar------------- */
 
 nav {
@@ -172,7 +186,7 @@ nav {
   justify-content: space-between;
   gap: 1rem;
   background-color: var(--light-yellow);
-  padding-inline: 2rem;
+  padding: 1rem 2rem;
   color: var(--blue);
 }
 
@@ -183,6 +197,11 @@ nav > a {
 nav button {
   color: var(--blue);
   padding: 1.5rem;
+}
+
+nav .auth-button {
+  font-size: var(--fs-content);
+  padding: 0.5rem;
 }
 
 .sidebar-container {
@@ -375,6 +394,10 @@ nav button {
   margin-top: auto;
 }
 
+.rating-text {
+  padding-right: 0.5rem;
+}
+
 .pagination {
   display: flex;
   align-items: center;
@@ -481,6 +504,9 @@ nav button {
 
 .book-detail-container ul {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .book-detail-container ul li {
@@ -598,3 +624,63 @@ nav button {
 }
 
 /* --------------------------------- */
+
+/* -------------login------------- */
+
+.login-container,
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container > div,
+.register-container > div {
+  max-width: 40rem;
+  width: 100%;
+}
+
+.login-container > div > h1,
+.register-container > div > h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-container > div > form,
+.register-container > div > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.login-container input,
+.register-container input {
+  width: 100%;
+}
+
+.register-container input {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--blue);
+  border-radius: var(--rounded);
+}
+
+.submit-button {
+  cursor: pointer;
+}
+
+.helper-text {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.helper-text > a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.register-container .helptext {
+  font-size: var(--fs-small);
+}
